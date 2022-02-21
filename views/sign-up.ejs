@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><%- include("layout", {title: "Sign up"}) %></head>
+    <body>
+        <form action="/sign-up" method="post">
+            <label>
+                First name
+                <input type="text" name="first_name" maxlength="100" required value="<%= first_name ? first_name : null %>">
+            </label>
+            <label>
+                Last name
+                <input type="text" name="last_name" maxlength="100" required value="<%= last_name ? first_name : null %>">
+            </label>
+            <label>
+                Email
+                <input type="email" name="email" required value="<%= email ? email : null %>">
+            </label>
+            <label>
+                Password
+                <input type="password" name="password" minlength="8" required>
+            </label>
+            <label>
+                Confirm password
+                <input type="password" name="confirm_password" minlength="8" required>
+            </label>
+            <label>
+                Admin
+                <input type="checkbox" name="isAdmin">
+            </label>
+            <input type="submit" value="Sign up">
+        </form>
+        <% if(errors) { %>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.msg %></li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </body>
+</html>

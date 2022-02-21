@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><%- include("layout", {title: "Members only"}) %></head>
+    <body>
+        <h1>Welcome to Members Only!</h1>
+        <ul>
+            <% messages.forEach(msg => { %>
+                <li>
+                    <h4><%= msg.title %></h4>
+                    <p><%= msg.text %></p>
+                    <% if(isMember) { %>
+                        <p><%= msg.timestamp %></p>
+                        <p><%= msg.author.name %></p>
+                    <% } %>
+                    <% if(isAdmin) { %>
+                        <form action="/delete" method="post">
+                            <input type="text" value="<%= msg._id %>" name="id" hidden>
+                            <input type="submit" value="Delete message">
+                        </form>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
+        <% if(user) { %>
+            <a href="/send-message">Send message</a>
+            <% if(!isMember) { %>
+                <a href="/join">Join the club</a>
+            <% } %>
+            <form action="/logout" method="post">
+                <input type="submit" value="Log out">
+            </form>
+        <% } else { %>
+            <a href="/login">Log in</a>
+            <a href="/sign-up">Sign up</a>
+        <% } %>
+    </body>
+</html>

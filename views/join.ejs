@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><%- include("layout", {title: "Join the club"}) %></head>
+    <body>
+        <form action="" method="post">
+            <label for="password">Secret Password</label>
+            <input id="password" name="password" type="password" required>
+            <input type="submit" value="Join">
+        </form>
+        <% if(errors) { %>
+            <ul>
+                <% errors.forEach(err => { %>
+                    <li><%= err.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </body>
+</html>

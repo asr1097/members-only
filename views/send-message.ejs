@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><%- include("layout", {title: "Send message"}) %></head>
+    <body>
+        <form action="" method="post">
+            <label for="title" value="Title">
+            <input type="text" name="title" id="title" required>
+            <label for="message" value="message">
+            <textarea name="message" id="message" maxlength="999" required></textarea>
+            <input type="submit" value="Send message">
+        </form>
+        <% if(errors) { %>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.msg %></li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </body>
+</html>
